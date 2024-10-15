@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,16 @@ INSTALLED_APPS = [
     'corsheaders',
     'hospitalBacked',
 ]
+SIMPLE_JWT ={
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+    'ALGORITHM': 'HS256',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +63,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': {
+        'rest_framework.permissions.AllowAny',
+    },
+    'DEFAULT_AUTHENTICATION_CLASSES': {
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    }
+}
+AUTH_USER_MODEL = 'hospitalBacked.Usuario'
 ROOT_URLCONF = 'HospitalMintic.urls'
 
 TEMPLATES = [
@@ -78,8 +98,12 @@ WSGI_APPLICATION = 'HospitalMintic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hosp_bd_mintic',
+        'USER': 'hosp_bd_mintic_user',
+        'PASSWORD': 'QRwiQUWDbZMuaxZdKdzugtDYXSs2uUZP',
+        'HOST': 'dpg-cs6ho2jtq21c73dsn0u0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
