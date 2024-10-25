@@ -10,6 +10,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
+    
     def create_superuser(self, username,password):
         user = self.create_user(
             username=username,
@@ -21,14 +22,14 @@ class UserManager(BaseUserManager):
     
 class Usuario(AbstractBaseUser, PermissionsMixin):
     id=models.BigAutoField(primary_key=True)
-    rol=models.CharField('Rol',max_length=50)
-    nombre=models.CharField('Nombre',max_length=50)
-    apellido=models.CharField('Apellido',max_length=50)
-    celular=models.CharField('Celular',max_length=50)
-    e_mail=models.EmailField('Correo',max_length=50)
-    direccion=models.CharField('Direccion',max_length=50)
-    username=models.CharField('Username',max_length=50, unique=True)
-    password=models.CharField('Password',max_length=50)
+    rol=models.CharField(max_length=50)
+    nombre=models.CharField(max_length=50)
+    apellido=models.CharField(max_length=50)
+    celular=models.CharField(max_length=50)
+    e_mail=models.EmailField(max_length=50)
+    direccion=models.CharField(max_length=50)
+    username=models.CharField(max_length=50, unique=True)
+    password=models.CharField(max_length=256)
 
     def save(self, **kwargs):
         some_salt = 'mMuJ0DrIk6vgtdIYepkIxN'

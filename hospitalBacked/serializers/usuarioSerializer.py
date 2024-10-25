@@ -5,4 +5,4 @@ from hospitalBacked.models.usuario import Usuario
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id','rol','username','password','apellido','e_mail','celular','direccion']
+        fields = ['id','rol','username','password','nombre','apellido','e_mail','celular','direccion']

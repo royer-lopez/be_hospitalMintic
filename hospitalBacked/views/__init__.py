@@ -1,2 +1,2 @@
 from .userView import UsuarioListView, UsuarioRetrieveupdatetoDeleteView
-from .medicoView import MedicoListView, MedicoRetrieveupdatetoDeleteView
+from .medicoView import MedicoListCreateView, MedicoRetrieveupdatetoDeleteView

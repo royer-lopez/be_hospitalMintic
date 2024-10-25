@@ -20,9 +20,9 @@ from hospitalBacked import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', views.userView.UsuarioListView.as_view()),
-    path('user/<int:pk>/', views.userView.UsuarioRetrieveupdatetoDeleteView.as_view()),
-    path('medico/', views.medicoView.MedicoListView.as_view()),
-    path('medico/<int:pk>/', views.medicoView.MedicoRetrieveupdatetoDeleteView.as_view()),
+    path('user/', views.UsuarioListView.as_view()),
+    path('user/<int:pk>/', views.UsuarioRetrieveupdatetoDeleteView.as_view()),
+    path('medico/', views.MedicoListCreateView.as_view()),
+    path('medico/<int:pk>/', views.MedicoRetrieveupdatetoDeleteView.as_view()),
 
 ]

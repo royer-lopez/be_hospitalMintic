@@ -5,10 +5,10 @@ from hospitalBacked.serializers.usuarioSerializer import UsuarioSerializer
 from hospitalBacked.serializers.medicoSerializer import MedicoSerializer
 from hospitalBacked.models.medico import Medico
 
-class MedicoListView(generics.ListAPIView):
+class MedicoListCreateView(generics.ListCreateAPIView):
     queryset = Medico.objects.all()
     serializer_class = MedicoSerializer
-    #permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated)
 
     def list(self, request):
         print("Get a todos los Medicos")
@@ -19,7 +19,6 @@ class MedicoListView(generics.ListAPIView):
     
     def post(self, request, *args, **kwargs):
         print("POST a Medico")
-        print(request.data)
         usuarioData = request.data.pop('usuario')
         serializerU = UsuarioSerializer(data=usuarioData)
         serializerU.is_valid(raise_exception=True)
